@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import Navigation from './components/navigation/Navigation';
+import NotFound from './pages/NotFound';
+
+import Posts from './pages/Posts';
+import SinglePost from './components/Posts/SinglePost';
+import CreatePost from './pages/CreatePost';
+import EditPost from './components/Posts/EditPost';
+import Users from './pages/Users';
+
+import UserProfile from './components/Users/UserProfile';
+
+import MarginCard from './components/UI/MarginCard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navigation />
+      <MarginCard>
+        <Routes>
+          <Route path="/" element={<Navigate to="/posts" />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="posts" element={<Posts />}></Route>
+          <Route path="posts/:postId" element={<SinglePost />} />
+          <Route path="new-post" element={<CreatePost />} />
+          <Route path="new-post/:postId" element={<EditPost />} />
+          <Route path="users" element={<Users />} />
+          <Route path="users/:userId" element={<UserProfile />} />
+        </Routes>
+      </MarginCard>
+    </BrowserRouter>
   );
 }
 
