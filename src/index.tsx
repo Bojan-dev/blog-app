@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 
 import { fetchUsers } from './store/usersSlice';
+import { fetchPosts } from './store/postsSlice';
 
 store.dispatch(fetchUsers());
+store.dispatch(fetchPosts());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

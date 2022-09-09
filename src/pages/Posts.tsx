@@ -1,27 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../store/hooks';
-import { selectPostsDataInfo, fetchPosts } from '../store/postsSlice';
+import { selectPostsDataInfo } from '../store/postsSlice';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import PostsInfo from '../components/Posts/PostsInfo';
+import Post from '../components/Posts/Post';
 
 const Posts: React.FC = () => {
   const { posts, status, error } = useSelector(selectPostsDataInfo);
-  const dispatch = useAppDispatch();
 
   const [mainHeight, setMainHeight] = useState(0);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchPosts());
-    }
 
+  useEffect(() => {
     if (wrapperRef.current)
       setMainHeight(window.innerHeight - wrapperRef.current.offsetTop - 40);
-  }, [dispatch, status]);
+  }, []);
 
   let htmlContent: JSX.Element;
 
@@ -39,7 +34,7 @@ const Posts: React.FC = () => {
     htmlContent = (
       <>
         {posts.map((post) => (
-          <PostsInfo key={post.id} {...post} />
+          <Post key={post.id} {...post} />
         ))}
       </>
     );

@@ -44,8 +44,7 @@ const SinglePost: React.FC = () => {
           </p>
         </div>
       </PostBody>
-
-      {selectedPost?.reactions && (
+      {selectedPost.reactions && (
         <PostReactions reactions={selectedPost.reactions} postId={postId} />
       )}
     </article>
