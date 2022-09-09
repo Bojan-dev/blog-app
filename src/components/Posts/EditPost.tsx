@@ -2,15 +2,17 @@ import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { editPost } from '../../store/postsSlice';
-import { selectAllPosts } from '../../store/postsSlice';
+import { selectPost } from '../../store/postsSlice';
+import { RootState } from '../../store/store';
 
 import PostForm from './PostForm';
 
 const EditPost = () => {
   const postId = Number(useParams().postId);
-  const posts = useSelector(selectAllPosts);
 
-  const selectedPost = posts.find((post) => post.id === postId);
+  const selectedPost = useSelector((state) =>
+    selectPost(state as RootState, postId)
+  );
 
   const initialState = {
     contentTitle: '',

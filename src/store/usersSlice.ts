@@ -2,7 +2,7 @@ import { fetchData } from '../helpers/fetching';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
-type User = {
+export type User = {
   id: number;
   name: string;
   username: string;
@@ -46,5 +46,7 @@ const usersSlice = createSlice({
 });
 
 export const selectAllUsers = (state: RootState) => state.users.users;
+export const selectUser = (state: RootState, userId: number) =>
+  state.users.users.find((user) => user.id === userId);
 
 export default usersSlice.reducer;

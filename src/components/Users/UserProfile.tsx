@@ -1,19 +1,21 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-
-import { useParams } from 'react-router-dom';
+import { RootState } from '../../store/store';
+import { selectUser } from '../../store/usersSlice';
 
 import { useSelector } from 'react-redux';
 
-import { selectAllUsers } from '../../store/usersSlice';
+import { useParams } from 'react-router-dom';
 
 import NoInfoFound from '../UI/NoInfoFound';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 const UserProfile = () => {
   const userId = Number(useParams().userId);
-  const allUsers = useSelector(selectAllUsers);
 
-  const selectedUser = allUsers.find((user) => user.id === userId);
+  const selectedUser = useSelector((state) =>
+    selectUser(state as RootState, userId)
+  );
 
   if (!selectedUser) {
     return <NoInfoFound text={`Selected user doesn't exist, return back:`} />;

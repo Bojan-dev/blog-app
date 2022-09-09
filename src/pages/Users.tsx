@@ -10,7 +10,7 @@ const Users = () => {
       <h2 className="text-2xl underline">LIST OF USERS:</h2>
       <ul>
         {users.map((user) => (
-          <li className=" my-3">
+          <li key={user.id} className=" my-3">
             <Link
               to={`/users/${user.id}`}
               className="border-main-purple hover:border-b-2"

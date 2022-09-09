@@ -15,7 +15,7 @@ export type Post = {
   reactions: ReactionsType;
 };
 
-type PostsInitial = {
+export type PostsInitial = {
   posts: Array<Post>;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: null | string;
@@ -133,6 +133,8 @@ const postsSlice = createSlice({
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 export const selectPostsDataInfo = (state: RootState) => state.posts;
+export const selectPost = (state: RootState, postId: number) =>
+  state.posts.posts.find((post) => post.id === postId);
 
 export const addNewPost = postsSlice.actions.addPost;
 export const updateReaction = postsSlice.actions.addPostReaction;
