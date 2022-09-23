@@ -19,7 +19,7 @@ const SinglePost: React.FC = () => {
   );
 
   return selectedPost ? (
-    <article className="border-solid border border-black rounded-xl p-8 w-1/3 m-auto mb-5 gap-5 flex flex-col relative">
+    <article className="border-solid border border-black rounded-xl p-8 xl:w-1/3 md:w-3/5 m-auto mb-5 gap-5 flex flex-col relative">
       <PostBody
         title={selectedPost.title}
         body={selectedPost.body}

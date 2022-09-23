@@ -1,38 +1,31 @@
 import { NavLink } from 'react-router-dom';
 
-const NavigationLinks = () => {
+const LINKS = [
+  { path: 'posts', text: 'Posts' },
+  { path: 'new-post', text: 'Create Post' },
+  { path: 'users', text: 'Authors' },
+];
+
+type Props = {
+  setHamBar: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const NavigationLinks = ({ setHamBar }: Props) => {
   return (
     <>
-      <li className="">
-        <NavLink
-          to={'posts'}
-          className={({ isActive }) =>
-            isActive ? 'underline block w-full' : 'block w-full'
-          }
-        >
-          Posts
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={'new-post'}
-          className={({ isActive }) =>
-            isActive ? 'underline w-full block' : 'block w-full'
-          }
-        >
-          Create Post
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={'users'}
-          className={({ isActive }) =>
-            isActive ? 'underline w-full block' : 'block w-full'
-          }
-        >
-          Authors
-        </NavLink>
-      </li>
+      {LINKS.map((link) => (
+        <li key={link.path}>
+          <NavLink
+            onClick={() => setHamBar(false)}
+            to={link.path}
+            className={({ isActive }) =>
+              isActive ? 'underline w-full block' : 'block w-full'
+            }
+          >
+            {link.text}
+          </NavLink>
+        </li>
+      ))}
     </>
   );
 };

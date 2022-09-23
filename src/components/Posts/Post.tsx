@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { RootState } from '../../store/store';
@@ -14,7 +15,7 @@ const PostsInfo: React.FC<Post> = (post) => {
   );
 
   return (
-    <article className="border-solid border border-black rounded-xl p-8 m-auto mb-5 gap-5 flex flex-col xl:w-1/3 md:w-3/5 last-of-type:mb-0 relative">
+    <article className="border border-black rounded-xl p-8 m-auto mb-5 gap-5 flex flex-col w-full xl:w-1/3 md:w-3/5 last-of-type:mb-0 relative">
       <PostBody title={post.title} body={post.body} postId={post.id}>
         <div>
           <p>
@@ -40,4 +41,4 @@ const PostsInfo: React.FC<Post> = (post) => {
   );
 };
 
-export default PostsInfo;
+export default React.memo(PostsInfo);

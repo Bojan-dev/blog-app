@@ -44,7 +44,7 @@ const Posts: React.FC = () => {
     <div
       ref={wrapperRef}
       style={{ height: `${mainHeight}px` }}
-      className={`overflow-y-scroll overflow-x-hidden w-[90vw] m-auto py-8 flex flex-col align-center border px-4 md:px-0`}
+      className={`overflow-y-scroll overflow-x-hidden w-[90vw] m-auto py-8 grid place-items-center border px-4 md:px-0`}
     >
       {htmlContent}
     </div>

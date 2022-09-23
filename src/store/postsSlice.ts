@@ -44,15 +44,11 @@ const postsSlice = createSlice({
     ) => {
       const { userId, title, body } = action.payload;
 
-      const postsCopy = JSON.parse(JSON.stringify(state.posts));
-
-      postsCopy.sort((a: Post, b: Post) => b.id - a.id);
-
       const newPost: Post = {
         userId,
         title,
         body,
-        id: postsCopy[0].id + 1,
+        id: state.posts.length + 1,
         reactions: {
           like: 0,
           wow: 0,
@@ -122,7 +118,6 @@ const postsSlice = createSlice({
 
         state.posts = [];
         state.posts.push(...postsArr);
-        localStorage.setItem('posts', JSON.stringify(state.posts));
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
